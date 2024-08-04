@@ -146,8 +146,8 @@ export default function Home() {
         </Alert>
       </Snackbar>
 
-      <Box border="1px solid #0288D1" bgcolor="#B3E5FC" p={2} borderRadius={1} mb={2}>
-        <Typography variant="h2" color="#0277BD">Inventory Items</Typography>
+      <Box border="1px solid #0288D1" bgcolor="#B3E5FC" p={2} borderRadius={1} mb={2} width="80%">
+        <Typography variant="h2" color="#0277BD">Pantry Items</Typography>
         <Stack direction="row" spacing={2} alignItems="center" mt={2}>
           <TextField 
             variant="outlined"
@@ -159,13 +159,15 @@ export default function Home() {
           <Button variant="contained" onClick={handleSearch} sx={{ backgroundColor: '#0288D1', color: '#fff' }}>
             Search
           </Button>
+        </Stack>
+        <Stack direction="row" spacing={1} mt={2}>
+          <Button variant="contained" onClick={handleOpen} sx={{ backgroundColor: '#0288D1', color: '#fff' }}>
+            Add New Item
+          </Button>
           <Button variant="outlined" onClick={handleShowAll} sx={{ color: '#0288D1', borderColor: '#0288D1' }}>
             Show All
           </Button>
         </Stack>
-        <Button variant="contained" onClick={handleOpen} sx={{ backgroundColor: '#0288D1', color: '#fff', mt: 2 }}>
-          Add New Item
-        </Button>
       </Box>
 
       <Stack 
@@ -186,30 +188,38 @@ export default function Home() {
               justifyContent="space-between"
               bgcolor='#B3E5FC'
               padding={2}
-              borderRadius={1}
+              borderRadius={2}
             >
-              <Typography variant='h6' color='#0277BD'>
-                {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
-              </Typography>
-              <Typography variant='h6' color='#0277BD'>
-                {item.quantity}
-              </Typography>
-              <Stack direction="row" spacing={2}>
-                <Button
-                  variant="contained"
-                  onClick={() => addItem(item.name)}
-                  sx={{ backgroundColor: '#0288D1', color: '#fff' }}
-                >
-                  Add
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={() => removeItem(item.name)}
-                  sx={{ backgroundColor: '#0288D1', color: '#fff' }}
-                >
-                  Remove
-                </Button>
-              </Stack>
+              <Box display="flex" justifyContent="space-between" width="100%">
+                <Box flex="1">
+                  <Typography variant='h6' color='#0277BD'>
+                    {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+                  </Typography>
+                </Box>
+                <Box width="100px" textAlign="center">
+                  <Typography variant='h6' color='#0277BD'>
+                    {item.quantity}
+                  </Typography>
+                </Box>
+                <Box flex="1" display="flex" justifyContent="flex-end">
+                  <Stack direction="row" spacing={2}>
+                    <Button
+                      variant="contained"
+                      onClick={() => addItem(item.name)}
+                      sx={{ backgroundColor: '#0288D1', color: '#fff' }}
+                    >
+                      Add
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => removeItem(item.name)}
+                      sx={{ backgroundColor: '#0288D1', color: '#fff' }}
+                    >
+                      Remove
+                    </Button>
+                  </Stack>
+                </Box>
+              </Box>
             </Box>
           ))
         }
